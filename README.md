@@ -9,4 +9,3 @@ As the project evolves, additional documentation covering setup, architecture, h
 ## Contributors
 
 - Alexander Wiegand - Software Lead
-- Jose
