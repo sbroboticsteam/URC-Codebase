@@ -8,4 +8,4 @@ As the project evolves, additional documentation covering setup, architecture, h
 
 ## Contributors
 
-- Alexander Wiegand - Software Man
+- Alexander Wiegand - Software Lead
