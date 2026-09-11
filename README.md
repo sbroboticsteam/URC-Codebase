@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository contains all of the software and research developed for our robotics platform. 
+This repository contains all of the software and research developed for our robotics platform 
 
 As the project evolves, additional documentation covering setup, architecture, hardware, and usage will be added.
 
