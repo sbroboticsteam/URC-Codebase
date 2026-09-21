@@ -267,10 +267,10 @@ Antenna quality is the single biggest factor in real-world RTK performance. A ch
 
 A metal disc 2–3× the antenna diameter, or aluminum foil, placed under the antenna significantly reduces multipath from ground reflections and provides a stable reference plane. **For a rover with a metal chassis, this is both an advantage and a caution** (see §3.4).
 
-- **SMA connector** preferred over U.FL for field durability (U.FL connectors are rated for only ~30 mating cycles and are fragile on a vibrating chassis) [1]
-- **Mounting:** Rigidly mounted, ideally on a non-conductive stand-off to keep the antenna phase center stable. The antenna's phase center offset must be calibrated and accounted for in the rover's coordinate frame [4]
-- **Cable:** Keep under 2 dB total loss. RG-58 (~0.6 dB/m) is fine for ≤3 m; LMR-200 (~0.4 dB/m) for 3–7 m [4]
-- **LNA:** Active antenna with 25–40 dB LNA gain, noise figure < 2 dB [4]
+- **SMA connector** preferred over U.FL for field durability (U.FL connectors are rated for only ~30 mating cycles and are fragile on a vibrating chassis)
+- **Mounting:** Rigidly mounted, ideally on a non-conductive stand-off to keep the antenna phase center stable. The antenna's phase center offset must be calibrated and accounted for in the rover's coordinate frame
+- **Cable:** Keep under 2 dB total loss. RG-58 (~0.6 dB/m) is fine for ≤3 m; LMR-200 (~0.4 dB/m) for 3–7 m
+- **LNA:** Active antenna with 25–40 dB LNA gain, noise figure < 2 dB
 
 ### 3.2 Specific Antenna Options
 
@@ -278,9 +278,9 @@ A metal disc 2–3× the antenna diameter, or aluminum foil, placed under the an
 
 | Parameter | Value |
 |---|---|
-| Bands | L1/L2/L5/E6/B3/L (all-band) [12] |
+| Bands | L1/L2/L5/E6/B3/L (all-band) |
 | Type | Active patch, ceramic |
-| Connector | SMA, 5 m cable included [12] |
+| Connector | SMA, 5 m cable included |
 | Constellations | GPS, GLONASS, Galileo, BeiDou, QZSS |
 | LNA | Integrated, 3.3–5 V DC bias |
 | Dimensions | Compact (exact dimensions in datasheet) |
@@ -289,14 +289,14 @@ A metal disc 2–3× the antenna diameter, or aluminum foil, placed under the an
 
 **Pros:**
 - Covers all bands including Galileo E6 and BeiDou B3 — maximizes satellite count and RTK reliability
-- Official u-blox antenna; validated with F9P and F20P [12]
+- Official u-blox antenna; validated with F9P and F20P
 - 5 m SMA cable included
 - Compact, lightweight — easy to mount on a rover
 - Available worldwide from major distributors
 
 **Cons:**
-- Patch antenna — directional; performs best when sky-facing side is unobstructed [4]
-- Requires a proper ground plane (metal disc ≥ 7 cm diameter, or a metal chassis) [4]
+- Patch antenna — directional; performs best when sky-facing side is unobstructed
+- Requires a proper ground plane (metal disc ≥ 7 cm diameter, or a metal chassis)
 - Not a choke-ring antenna — less multipath rejection than survey-grade options
 - No built-in mounting bracket; must be custom mounted
 
@@ -308,7 +308,7 @@ A metal disc 2–3× the antenna diameter, or aluminum foil, placed under the an
 |---|---|
 | Bands | L1/L2/L5 (triple-band) |
 | Type | Active patch |
-| Optimized for | u-blox F20 platform (ZED-F20P) [3] |
+| Optimized for | u-blox F20 platform (ZED-F20P) |
 | Price | ~$40–$80 |
 
 **Pros:**
@@ -328,7 +328,7 @@ A metal disc 2–3× the antenna diameter, or aluminum foil, placed under the an
 | Parameter | Value |
 |---|---|
 | Bands | L1/L2/L5/E1/E5a/E5b/B1/B2 (all-band) |
-| Type | Choke-ring, 3D [11] |
+| Type | Choke-ring, 3D |
 | Connector | TNC (with 5 m TNC-SMA cable) |
 | Dimensions | ~50 mm dia × 40 mm height |
 | LNA | Integrated, 28 dB |
@@ -336,9 +336,9 @@ A metal disc 2–3× the antenna diameter, or aluminum foil, placed under the an
 | Mounting | Tripod/bolt-on stand included |
 
 **Pros:**
-- **Excellent multipath rejection** — concentric rings attenuate ground reflections by 15–20 dB [4]
+- **Excellent multipath rejection** — concentric rings attenuate ground reflections by 15–20 dB
 - **Exceptional phase center stability** — ideal for a base station
-- Works with all GNSS modules (u-blox, Septentrio, Unicore, Bynav) [11]
+- Works with all GNSS modules (u-blox, Septentrio, Unicore, Bynav)
 - Includes mounting stand — no custom fabrication needed
 - Best choice for the **base station** where size and weight are not constraints
 
@@ -355,12 +355,12 @@ A metal disc 2–3× the antenna diameter, or aluminum foil, placed under the an
 | Parameter | Value |
 |---|---|
 | Bands | L1/L2 (dual-band), some variants L1/L2/L5 |
-| Type | Helical / quad-filar [13] |
+| Type | Helical / quad-filar |
 | Connector | SMA |
 | Price | ~$30–$80 |
 
 **Pros:**
-- 3D omnidirectional pattern — less sensitive to mounting orientation [4]
+- 3D omnidirectional pattern — less sensitive to mounting orientation
 - Good multipath rejection for a mobile platform
 - Inexpensive
 - Available on AliExpress, TOPGNSS, various resellers
@@ -386,7 +386,7 @@ A metal disc 2–3× the antenna diameter, or aluminum foil, placed under the an
 
 This is a critical practical concern for a rover:
 
-**The good news:** A metal chassis can serve as the ground plane for a patch antenna. A patch antenna mounted on or near a metal surface actually performs *better* than on a non-conductive surface, because the metal provides the required conductive ground plane [4]. This is how most automotive and industrial GNSS antennas work — they are mounted on a metal roof or body panel.
+**The good news:** A metal chassis can serve as the ground plane for a patch antenna. A patch antenna mounted on or near a metal surface actually performs *better* than on a non-conductive surface, because the metal provides the required conductive ground plane. This is how most automotive and industrial GNSS antennas work — they are mounted on a metal roof or body panel.
 
 **The bad news:** If the antenna is mounted *too close* to the metal surface, or if the metal panel is part of a large conductive structure (like a chassis frame), it can cause:
 - Detuning of the antenna resonance
@@ -395,10 +395,10 @@ This is a critical practical concern for a rover:
 
 **Mitigation strategies:**
 
-1. **Mount the antenna on a stand-off** — a 5–15 cm non-conductive (acrylic, wood, plastic) or conductive (aluminum) post that raises the antenna above the chassis. A 10 cm aluminum stand-off is a common choice [4].
-2. **Add a dedicated ground plate** — a circular aluminum disc (7–15 cm diameter) mounted flat under the antenna provides a consistent, well-defined ground plane regardless of chassis geometry [4].
-3. **Isolate from EMI sources** — keep the antenna at least 30 cm from motors, ESCs, battery, and 4G/LTE modules [4].
-4. **Avoid carbon fiber** — carbon fiber is conductive and partially RF-shields the antenna. If the chassis is carbon fiber, insert an aluminum ground plane between the frame and the antenna [4].
+1. **Mount the antenna on a stand-off** — a 5–15 cm non-conductive (acrylic, wood, plastic) or conductive (aluminum) post that raises the antenna above the chassis. A 10 cm aluminum stand-off is a common choice.
+2. **Add a dedicated ground plate** — a circular aluminum disc (7–15 cm diameter) mounted flat under the antenna provides a consistent, well-defined ground plane regardless of chassis geometry.
+3. **Isolate from EMI sources** — keep the antenna at least 30 cm from motors, ESCs, battery, and 4G/LTE modules.
+4. **Avoid carbon fiber** — carbon fiber is conductive and partially RF-shields the antenna. If the chassis is carbon fiber, insert an aluminum ground plane between the frame and the antenna.
 5. **Calibrate the phase center offset** — after mounting, measure the exact offset from the antenna phase center to the rover's coordinate origin. This offset must be applied in the navigation software. The u-blox F9P/F20P can output the antenna's own phase center reference, but the physical mounting offset is user-defined.
 
 **Practical setup for a URC rover:**
@@ -412,4 +412,14 @@ This is a critical practical concern for a rover:
          ┌─────┴─────┐
          │ 10 cm AL  │  ← Aluminum stand-off (non-magnetic)
          │ stand-off │
-         └─────┬────
+         └─────┬─────┘
+               │
+    ┌──────────┴───────────┐
+    │   Metal chassis      │  ← Serves as ground plane
+    │   (aluminum/steel)   │
+    └──────────────────────┘
+```
+
+The antenna should be mounted at the highest point on the rover, clear of any superstructure, with an unobstructed view of the sky in all azimuths. For a URC rover, this typically means the top of the chassis or a mast near the center of mass.
+
+**For the base station**, the choke-ring antenna is bolted directly to a tripod or fixed post with a flat metal ground disc underneath. No stand-off is needed — the choke-ring design is self-contained and does not rely on the mounting surface for ground plane.
