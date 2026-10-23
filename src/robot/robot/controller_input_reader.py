@@ -52,10 +52,10 @@ class JoyEcho(Node):
 
 
 def main():
-    devices = list_js_devices()
-    enumerate_devices(devices)
-
-    joy_proc = start_joy_node()
+#    devices = list_js_devices()
+#    enumerate_devices(devices)
+#    joy_proc = start_joy_node()
+#Don't need these three lines above, because these will be in our launch file
 
     rclpy.init()
     node = JoyEcho()
