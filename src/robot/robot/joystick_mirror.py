@@ -1,11 +1,12 @@
-import rclpy
-from rclpy.node import Node
-from rclpy.qos import qos_profile_sensor_data
 from rcl_interfaces.msg import (
-    ParameterDescriptor,
     FloatingPointRange,
+    ParameterDescriptor,
     SetParametersResult,
 )
+import rclpy
+from rclpy.executors import ExternalShutdownException
+from rclpy.node import Node
+from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import Joy
 from std_msgs.msg import Float32MultiArray
 
@@ -13,7 +14,7 @@ from std_msgs.msg import Float32MultiArray
 class JoystickMotor(Node):
     def __init__(self):
         super().__init__('joystick_motor')
-
+        print('controller detected')
         deadzone_descriptor = ParameterDescriptor(
             description='Joystick dead zone, between 0.0 and 1.0',
             floating_point_range=[
@@ -52,7 +53,7 @@ class JoystickMotor(Node):
             'Joystick motor controller started.'
         )
         self.get_logger().info(
-            f"Dead zone: {self.get_deadzone():.3f}"
+            f'Dead zone: {self.get_deadzone():.3f}'
         )
         self.get_logger().info(
             'Listening for joystick messages on /joy'
@@ -93,7 +94,6 @@ class JoystickMotor(Node):
 
     def joystick_callback(self, msg):
         """Convert joystick inputs into four motor speed commands."""
-
         if len(msg.axes) < 2:
             self.get_logger().warning(
                 'Joystick message contains fewer than 2 axes.'
@@ -134,21 +134,14 @@ class JoystickMotor(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-
     node = JoystickMotor()
 
     try:
         rclpy.spin(node)
-
-    except KeyboardInterrupt:
-        node.get_logger().info(
-            'Joystick motor controller interrupted.'
-        )
-
+    except (KeyboardInterrupt, ExternalShutdownException):
+        pass
     finally:
-        node.stop_motors()
         node.destroy_node()
-
         if rclpy.ok():
             rclpy.shutdown()
 
