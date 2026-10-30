@@ -28,17 +28,15 @@ def generate_test_description():
 
     return launch.LaunchDescription(
         [
-            # Action 1 which enables isolation of ROS communication using rmw_test_fixture
-            #(Prevents any interruptions)
-            EnableRmwIsolation(), #Action 1
+
             # Node under test: joy_node
-            launch_ros.actions.Node( #Action 2 create a node
+            launch_ros.actions.Node( #Action 1 create a node
                 package="joy",
                 executable="joy_node",
                 name="test_talker",
                 output="screen" #output goes to terminal, default is in a file somewhere..
             ),
-            launch_testing.actions.ReadyToTest() #Action 3 tells the "framework" that the 
+            launch_testing.actions.ReadyToTest() #Action 2 tells the "framework" that the 
             #test should be run without delays
         ]
     )
