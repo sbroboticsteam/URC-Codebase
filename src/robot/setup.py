@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'robot' 
+package_name = 'robot'
 
 setup(
     name=package_name,
@@ -25,6 +25,7 @@ setup(
     entry_points={
         'console_scripts': [
             'test_node = robot.test_node:main',
+            'joystick_mirror = robot.joystick_mirror:main',
         ],
     },
 )
