@@ -32,7 +32,10 @@ class PWMNode(Node):
 
         self.publisher = self.create_publisher(UInt16MultiArray, '/motor_pwm', 10)
         self.subscription = self.create_subscription(
-            Float32MultiArray, '/motor_commands', self.on_commands, 10
+            Float32MultiArray,
+            '/motor_speeds',
+            self.on_commands,
+            10
         )
         self.commands = [0.0] * 4
         self.last_command_at = None
