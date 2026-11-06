@@ -62,6 +62,10 @@ class PWMNode(Node):
         else:
             values = [self.convert_to_pwm(value) for value in self.commands]
 
+        msg = UInt16MultiArray()
+        msg.data = [int(value) for value in values]
+        self.publisher.publish(msg)
+
     def convert_to_pwm(self, x):
         x = max(-1.0, min(1.0, x))  # Saturate to [-1, 1]
 
@@ -69,10 +73,6 @@ class PWMNode(Node):
             (self.L + self.H) / 2 
             + ((self.H - self.L) / 2) * x
         )
-
-        msg = UInt16MultiArray()
-        msg.data = [int(value) for value in values]
-        self.publisher.publish(msg)
 
 
 def main(args=None):
