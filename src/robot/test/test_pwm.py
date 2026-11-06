@@ -103,3 +103,11 @@ class TestPWM(unittest.TestCase):
         finally:
             self.node.destroy_subscription(sub)
             self.node.destroy_publisher(pub)
+
+#POST-SHUTDOWN TESTS
+@launch_testing.post_shutdown_test()
+class TestJoyShutdown(unittest.TestCase):
+    def test_exit_codes(self, proc_info):
+        """Check if the processes exited normally."""
+        launch_testing.asserts.assertExitCodes(proc_info)
+
