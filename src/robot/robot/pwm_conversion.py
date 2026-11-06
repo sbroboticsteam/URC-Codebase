@@ -17,11 +17,11 @@ class PWMNode(Node):
         self.declare_parameter('neutral_pwm', 1500)
 
         
-        self.declare_parameter('L', 1000)
-        self.declare_parameter('H', 2000)
+        self.declare_parameter('pwm_min', 1000)
+        self.declare_parameter('pwm_max', 2000)
 
-        self.L = int(self.get_parameter('L').value)
-        self.H = int(self.get_parameter('H').value)
+        self.pwm_min = int(self.get_parameter('pwm_min').value)
+        self.pwm_max = int(self.get_parameter('pwm_max').value)
 
 
         rate = float(self.get_parameter('publish_rate_hz').value)
@@ -62,18 +62,17 @@ class PWMNode(Node):
         else:
             values = [self.convert_to_pwm(value) for value in self.commands]
 
-    def convert_to_pwm(self, x):
-        x = max(-1.0, min(1.0, x))  # Saturate to [-1, 1]
-
-        return round(
-            (self.L + self.H) / 2 
-            + ((self.H - self.L) / 2) * x
-        )
-
         msg = UInt16MultiArray()
         msg.data = [int(value) for value in values]
         self.publisher.publish(msg)
 
+    def convert_to_pwm(self, x):
+        x = max(-1.0, min(1.0, x))  # Saturate to [-1, 1]
+
+        return round(
+            (self.pwm_min + self.pwm_max) / 2 
+            + ((self.pwm_max - self.pwm_min) / 2) * x
+        )
 
 def main(args=None):
     rclpy.init(args=args)
