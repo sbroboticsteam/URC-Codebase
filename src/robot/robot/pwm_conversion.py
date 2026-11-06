@@ -16,10 +16,11 @@ class PWMNode(Node):
         self.declare_parameter('command_timeout_sec', 0.5)
         self.declare_parameter('neutral_pwm', 1500)
 
-        
+        self.declare_parameter('motor_count', 4)
         self.declare_parameter('pwm_min', 1000)
         self.declare_parameter('pwm_max', 2000)
 
+        self.motor_count = int(self.get_parameter('motor_count').value)
         self.pwm_min = int(self.get_parameter('pwm_min').value)
         self.pwm_max = int(self.get_parameter('pwm_max').value)
 
@@ -34,14 +35,14 @@ class PWMNode(Node):
         self.subscription = self.create_subscription(
             Float32MultiArray, '/motor_commands', self.on_commands, 10
         )
-        self.commands = [0.0] * 4
+        self.commands = [0.0] * self.motor_count
         self.last_command_at = None
         self.timer = self.create_timer(1.0 / rate, self.publish_pwm)
         self.get_logger().info('PWM conversion node started')
 
     def on_commands(self, msg):
-        if len(msg.data) != 4:
-            self.get_logger().warning('Expected exactly 4 motor commands')
+        if len(msg.data) != self.motor_count:
+            self.get_logger().warning(f'Expected exactly {self.motor_count} motor commands')
             return
         if not all(math.isfinite(value) for value in msg.data):
             self.get_logger().warning('Motor commands must be finite numbers')
@@ -58,7 +59,7 @@ class PWMNode(Node):
             or time.monotonic() - self.last_command_at > self.timeout
         )
         if timed_out:
-            values = [self.neutral] * 4
+            values = [self.neutral] * self.motor_count
         else:
             values = [self.convert_to_pwm(value) for value in self.commands]
 
