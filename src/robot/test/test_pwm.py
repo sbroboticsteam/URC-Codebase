@@ -24,8 +24,8 @@ def generate_test_description():
                 name="pwm_node",
                 output="screen",
                 parameters=[{
-                    "L": 1000,
-                    "H": 2000,
+                    "pwm_min": 1000,
+                    "pwm_max": 2000,
                     "neutral_pwm": 1500,
                     "publish_rate_hz": 20.0,
                     "command_timeout_sec": 0.5
