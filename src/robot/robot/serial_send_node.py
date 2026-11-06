@@ -26,7 +26,7 @@ class SerialSendNode(Node):
         self.declare_parameter('timeout', 0.1)
 
         port = self.get_parameter('port').get_parameter_value().string_value
-        baudrate = self.get_parameter('baudrate').get_parameter_value().integer_value
+        baud_rate = self.get_parameter('baud_rate').get_parameter_value().integer_value
         timeout = self.get_parameter('timeout').get_parameter_value().double_value
 
         # Create subscriber 
@@ -34,9 +34,9 @@ class SerialSendNode(Node):
         self.serial_subscription # prevent unused var warning
 
         # Try to open serial port 
-        self.get_logger().info(f"Opening serial port: {port} at {baudrate} baud...")
+        self.get_logger().info(f"Opening serial port: {port} at {baud_rate} baud...")
         try:
-            self.Ser = serial.Serial(port=port, baudrate=baudrate, timeout=timeout)
+            self.Ser = serial.Serial(port=port, baudrate=baud_rate, timeout=timeout)
             time.sleep(2) # Small delay 
             self.get_logger().info("Serial port opened successfully.")
         except serial.SerialException as e:
