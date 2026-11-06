@@ -74,11 +74,6 @@ class PWMNode(Node):
             + ((self.pwm_max - self.pwm_min) / 2) * x
         )
 
-        msg = UInt16MultiArray()
-        msg.data = [int(value) for value in values]
-        self.publisher.publish(msg)
-
-
 def main(args=None):
     rclpy.init(args=args)
     node = None
