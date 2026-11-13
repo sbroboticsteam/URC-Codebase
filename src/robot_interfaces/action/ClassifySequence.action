@@ -1,0 +1,7 @@
+
+---
+bool has_classification
+robot_interfaces/Classification latest_classification
+uint32 classifications_published
+---
+uint32 classifications_published
